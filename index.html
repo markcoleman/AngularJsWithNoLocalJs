@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+    <title>AngularJs With No User Script</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h1>
+                AngularJs With No Local Js
+            </h1>
+
+            <form name="contactForm" method="post" action="save" class="form-horizontal"
+                  role="form">
+                <fieldset>
+                    <legend>Contact Form</legend>
+                    <div class="form-group">
+                        <label for="contactName" class="col-sm-2 control-label">Contact Name</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" id="contactName" name="contactName" ng-model="name" required=""
+                                   ng-maxlength="40" class="form-control"/>
+
+                            <div ng-if="contactForm.contactName.$dirty">
+                                <div class="alert alert-danger"
+                                     ng-if="contactForm.contactName.$error.required || contactForm.contactName.$error.maxlength">
+                                    <span ng-if="contactForm.contactName.$error.required">Contact name is required</span>
+                                    <span ng-if="contactForm.contactName.$error.maxlength">Max of 40</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Contact Method</label>
+
+                        <div class="col-sm-10">
+                            <select ng-model="contactMethod" required="" class="form-control">
+                                <option>Email</option>
+                                <option>Telephone</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div ng-switch on="contactMethod" class="form-group">
+
+                        <div ng-switch-when="Email">
+                            <label for="email" class="col-sm-2 control-label">Email</label>
+
+                            <div class="col-sm-10">
+
+                                <input type="email" id="email" name="email" ng-model="email" required=""
+                                       class="form-control"/>
+                                <div ng-if="contactForm.email.$dirty">
+                                    <span ng-show="contactForm.email.$error.required">Contact name is required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-switch-when="Telephone">
+                            <label for="telephone" class="col-sm-2 control-label">Telephone</label>
+
+                            <div class="col-sm-10">
+
+                                <input type="tel" id="telephone" name="telephone" ng-model="telephone" required=""
+                                       class="form-control"/>
+                                <div ng-if="contactForm.telephone.$dirty">
+                                    <span ng-show="contactForm.telephone.$error.required">Contact telephone is required</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comments" class="col-sm-2 control-label">Comments
+                        <span ng-class="{'error' : (comments == undefined)}">
+                            <span ng-if="comments != undefined">{{150 - comments.length}} characters remain.</span>
+                            <span ng-if="contactForm.comments.$dirty && comments == undefined">To long</span>
+                        </span>
+                        </label>
+
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="comments" name="comments" ng-model="comments"
+                                      ng-maxlength="150">
+
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="submit" class="btn btn-primary btn-large"
+                                   ng-disabled="contactForm.$invalid" value="Submit"/>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+</body>
+</html>
