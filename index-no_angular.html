@@ -25,14 +25,13 @@
                         <label for="contactName" class="col-sm-2 control-label">Contact Name</label>
 
                         <div class="col-sm-10">
-                            <input type="text" id="contactName" name="contactName" ng-model="name" required=""
-                                   ng-maxlength="40" class="form-control" placeholder="Your first and last name"/>
+                            <input type="text" id="contactName" name="contactName" required=""
+                                    class="form-control" placeholder="Your first and last name"/>
 
-                            <div ng-if="contactForm.contactName.$dirty">
-                                <div class="alert alert-danger"
-                                     ng-if="contactForm.contactName.$error.required || contactForm.contactName.$error.maxlength">
-                                    <span ng-if="contactForm.contactName.$error.required">Contact name is required.</span>
-                                    <span ng-if="contactForm.contactName.$error.maxlength">Contact name must be less than 40 characters.</span>
+                            <div>
+                                <div class="alert alert-danger">
+                                    <span>Contact name is required.</span>
+                                    <span>Contact name must be less than 40 characters.</span>
                                 </div>
                             </div>
                         </div>
@@ -47,35 +46,33 @@
                             </select>
                         </div>
                     </div>
-                    <div ng-switch on="contactMethod" class="form-group">
-                        <div ng-switch-when="Email">
+                    <div class="form-group">
+                        <div>
                             <label for="email" class="col-sm-2 control-label">Email</label>
 
                             <div class="col-sm-10">
-                                <input type="email" id="email" name="email" ng-model="email" required=""
+                                <input type="email" id="email" name="email" required=""
                                        class="form-control" placeholder="Your email address"/>
 
-                                <div class="alert alert-danger"
-                                     ng-if="contactForm.email.$dirty && contactForm.email.$error.required">
+                                <div class="alert alert-danger">
                                     <span>Email address is required.</span>
                                 </div>
                             </div>
                         </div>
-                        <div ng-switch-when="Telephone">
+                        <div>
                             <label for="telephone" class="col-sm-2 control-label">Telephone</label>
 
                             <div class="col-sm-10">
 
-                                <input type="tel" id="telephone" name="telephone" ng-model="telephone" required=""
+                                <input type="tel" id="telephone" name="telephone" required=""
                                        class="form-control" placeholder="Your telephone number"/>
 
-                                <div class="alert alert-danger"
-                                     ng-if="contactForm.telephone.$dirty && contactForm.telephone.$error.required">
+                                <div class="alert alert-danger">
                                     <span>Contact telephone is required</span>
                                 </div>
                             </div>
                         </div>
-                        <div ng-switch-default="">
+                        <div>
                             <label class="col-sm-2 control-label"></label>
                             <div class="col-sm-10">
                                 <div class="small text-muted alert alert-info">
@@ -88,26 +85,22 @@
                     <div class="form-group">
                         <label for="comments" class="col-sm-2 control-label">Comments
                         <span>
-                            <span ng-if="comments != undefined">{{150 - comments.length}} characters remain.</span>
+                            <span>150 characters remain.</span>
                         </span>
                         </label>
 
                         <div class="col-sm-10">
-                            <textarea class="form-control" id="comments" name="comments" ng-model="comments"
-                                      ng-maxlength="150" placeholder="Optional comments">
+                            <textarea class="form-control" id="comments" name="comments" placeholder="Optional comments">
 
                             </textarea>
-
-                            <div class="alert alert-danger"
-                                 ng-if="contactForm.comments.$dirty && comments == undefined">
+                            <div class="alert alert-danger">
                                 <span>Comments must be less than 150 characters.</span>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <input type="submit" class="btn btn-primary btn-large"
-                                   ng-disabled="contactForm.$invalid" value="Submit"/>
+                            <input type="submit" class="btn btn-primary btn-large" value="Submit"/>
                         </div>
                     </div>
                 </fieldset>
